@@ -13,5 +13,10 @@ public class Main {
         Permission permission = new Permission("read", "Users", "Description text");
         System.out.println(permission.format());
         System.out.println(permission.matches(".+", "user"));
+        Role role = new Role("Administrator", "описание роли");
+        System.out.println(role.format());
+        role.addPermission(permission);
+        System.out.println(role.hasPermission(permission.name(), permission.resource()));
+        System.out.println(role.format());
     }
 }
