@@ -10,5 +10,8 @@ public class Main {
         //User user1 = User.create("r", fullname, email);
         //User user2 = User.create("#", fullname, email);
         //User user3 = User.create(name, fullname, "email");
+        Permission permission = new Permission("read", "Users", "Description text");
+        System.out.println(permission.format());
+        System.out.println(permission.matches(".+", "user"));
     }
 }
