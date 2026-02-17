@@ -1,17 +1,26 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
-
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
-        }
+        String name = "roby";
+        String fullname = "dolly rob";
+        String email = "roby777@dorry.net";
+        User user = User.create(name, fullname, email);
+        System.out.println(user.format());
+        //User user1 = User.create("r", fullname, email);
+        //User user2 = User.create("#", fullname, email);
+        //User user3 = User.create(name, fullname, "email");
+        Permission permission = new Permission("read", "Users", "Description text");
+        System.out.println(permission.format());
+        System.out.println(permission.matches(".+", "user"));
+        Role role = new Role("Administrator", "описание роли");
+        System.out.println(role.format());
+        role.addPermission(permission);
+        System.out.println(role.hasPermission(permission.name(), permission.resource()));
+        System.out.println(role.format());
+        PermanentAssignment permanentAssignment = new PermanentAssignment(user, role, AssignmentMetadata.now("god", "create new world"));
+        System.out.println(permanentAssignment.summary());
+        TemporaryAssignment temporaryAssignment = new TemporaryAssignment(user, role, AssignmentMetadata.now("bear", "123"), String.valueOf(System.currentTimeMillis() + 10000));
+        System.out.println(temporaryAssignment.summary());
     }
 }
