@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 public class Role {
     String id;
@@ -10,7 +11,7 @@ public class Role {
     Set<Permission> permissions;
     Role(String name, String description)
     {
-        this.id = String.valueOf(name.hashCode());
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
         this.permissions = new HashSet<>();

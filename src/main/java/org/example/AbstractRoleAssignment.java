@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.UUID;
+
 public abstract class AbstractRoleAssignment implements RoleAssignment
 {
     String assignmentId;
@@ -8,11 +10,12 @@ public abstract class AbstractRoleAssignment implements RoleAssignment
     AssignmentMetadata metadata;
     AbstractRoleAssignment(User user, Role role, AssignmentMetadata metadata)
     {
-        this.assignmentId = String.valueOf(user.hashCode());
+        this.assignmentId = UUID.randomUUID().toString();
         this.user = user;
         this.role = role;
         this.metadata = metadata;
     }
+
     boolean equals(AbstractRoleAssignment x)
     {
         return this.assignmentId.equals(x.assignmentId);
@@ -27,6 +30,23 @@ public abstract class AbstractRoleAssignment implements RoleAssignment
                 "Reason: " + this.metadata.reason() + "\n" +
                 "Status: " + this.isActive();
     }
+
     public abstract boolean isActive();
     public abstract String assignmentType();
+    public String assignmentId()
+    {
+        return this.assignmentId;
+    }
+    public User user()
+    {
+        return this.user;
+    }
+    public Role role()
+    {
+        return this.role;
+    }
+    public AssignmentMetadata metadata()
+    {
+        return this.metadata;
+    }
 }

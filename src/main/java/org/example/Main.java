@@ -18,5 +18,9 @@ public class Main {
         role.addPermission(permission);
         System.out.println(role.hasPermission(permission.name(), permission.resource()));
         System.out.println(role.format());
+        PermanentAssignment permanentAssignment = new PermanentAssignment(user, role, AssignmentMetadata.now("god", "create new world"));
+        System.out.println(permanentAssignment.summary());
+        TemporaryAssignment temporaryAssignment = new TemporaryAssignment(user, role, AssignmentMetadata.now("bear", "123"), String.valueOf(System.currentTimeMillis() + 10000));
+        System.out.println(temporaryAssignment.summary());
     }
 }
